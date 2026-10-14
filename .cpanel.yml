@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/zersoftn/gib.zersoft.net/
+    - /bin/cp -rf * $DEPLOYPATH
+    - /bin/cp -f .env.example $DEPLOYPATH.env.example 2>/dev/null || true
+    - /bin/cp -f .htaccess $DEPLOYPATH.htaccess 2>/dev/null || true
