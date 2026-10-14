@@ -35,9 +35,6 @@ const PORT = process.env.PORT || 3005;
 // cPanel / Nginx / Cloudflare arkasında Reverse Proxy & SSL (https) desteği
 app.set('trust proxy', 1);
 
-// Arka planda periyodik senkronizasyonu başlat (30 dakikada bir)
-syncEngine.startPeriodicSync(30);
-
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
@@ -860,12 +857,27 @@ app.get('/api/system/version', (req, res) => {
 const isSocket = (typeof PORT === 'string' && (PORT.includes('/') || PORT.includes('\\')));
 const displayUrl = process.env.APP_URL || (isSocket ? 'https://gib.zersoft.net' : `http://localhost:${PORT}`);
 
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`🚀 GİB e-Arşiv Fatura Portalı Başlatıldı!`);
-  console.log(`🌐 Canlı Adres / Domain: ${displayUrl}`);
-  console.log(`📡 REST API:   ${isSocket ? displayUrl + '/api/status' : `http://localhost:${PORT}/api/status`}`);
-  console.log(`====================================================`);
-});
+async function startServer() {
+  try {
+    // Evrensel Veritabanı motorunu başlat
+    await db.init();
+
+    // Arka planda periyodik senkronizasyonu başlat (30 dakikada bir)
+    syncEngine.startPeriodicSync(30);
+
+    app.listen(PORT, () => {
+      console.log(`====================================================`);
+      console.log(`🚀 GİB e-Arşiv Fatura Portalı Başlatıldı!`);
+      console.log(`🌐 Canlı Adres / Domain: ${displayUrl}`);
+      console.log(`📡 REST API:   ${isSocket ? displayUrl + '/api/status' : `http://localhost:${PORT}/api/status`}`);
+      console.log(`====================================================`);
+    });
+  } catch (err) {
+    console.error('❌ [KRİTİK] Sunucu başlatılamadı:', err);
+    process.exit(1);
+  }
+}
+
+startServer();
 
 module.exports = app;
