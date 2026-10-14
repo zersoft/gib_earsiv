@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GİB e-Arşiv Fatura Portalı & Entegrasyon Kokpiti</title>
   <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="stylesheet" href="style.css?v=20261015_01">
+  <link rel="stylesheet" href="style.css?v=20261015_02">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,7 @@
             <h1>GİB e-Arşiv Fatura</h1>
             <span class="sub-badge">Resmi Portal</span>
           </div>
+        </div>
       </div>
 
       <!-- Aktif Mükellef / Firma Seçici (Mali Müşavir & Çoklu Firma) -->
@@ -55,22 +56,39 @@
 
         <div class="nav-divider"></div>
 
-        <div class="user-profile-badge" id="userProfileBadge" style="display: none; cursor: pointer;" title="Şifremi Değiştir">
-          <i class="fa-solid fa-circle-user"></i>
-          <span id="navUserName">Giriş Yapıldı</span>
-          <span class="user-role-pill" id="navUserRole">Yönetici</span>
-        </div>
+        <!-- Kullanıcı Profili & Dropdown Menü -->
+        <div class="user-menu-wrapper" id="userMenuWrapper">
+          <button type="button" class="user-profile-btn" id="userProfileBadge" style="display: none;" title="Kullanıcı Menüsü" aria-expanded="false" aria-haspopup="true">
+            <div class="user-avatar-circle">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="user-profile-info">
+              <span class="nav-user-name" id="navUserName">Giriş Yapıldı</span>
+              <span class="user-role-pill" id="navUserRole">Yönetici</span>
+            </div>
+            <i class="fa-solid fa-chevron-down user-caret"></i>
+          </button>
 
-        <div class="nav-actions">
-          <button class="btn btn-secondary btn-nav-action" id="btnOpenChangePassword" title="Şifremi Değiştir" style="display: none;">
-            <i class="fa-solid fa-key"></i> <span>Şifre Değiştir</span>
-          </button>
-          <button class="btn btn-secondary btn-nav-action" id="btnOpenSettings" title="Ayarlar">
-            <i class="fa-solid fa-gear"></i> <span>Ayarlar</span>
-          </button>
-          <button class="btn btn-outline btn-logout btn-nav-action" id="btnLogout" title="Güvenli Çıkış Yap" style="display: none;">
-            <i class="fa-solid fa-right-from-bracket"></i> <span>Çıkış</span>
-          </button>
+          <div class="user-dropdown-menu" id="userDropdownMenu">
+            <div class="dropdown-header">
+              <div class="dropdown-user-title">Hesap Yönetimi</div>
+              <div class="dropdown-user-name" id="dropdownUserName">Sistem Yöneticisi</div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item" id="btnOpenSettings">
+              <i class="fa-solid fa-gear"></i>
+              <span>Ayarlar</span>
+            </button>
+            <button type="button" class="dropdown-item" id="btnOpenChangePassword">
+              <i class="fa-solid fa-key"></i>
+              <span>Şifre Değiştir</span>
+            </button>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item dropdown-item-danger" id="btnLogout">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Çıkış Yap</span>
+            </button>
+          </div>
         </div>
       </div>
     </header>
@@ -956,6 +974,6 @@ POST /api/sms/verify
     <div id="toastContainer"></div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20261015_02"></script>
 </body>
 </html>

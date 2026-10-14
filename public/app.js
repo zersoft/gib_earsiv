@@ -88,9 +88,9 @@ function updateUserInterface(user) {
 
   if (user && getToken()) {
     if (userProfileBadge) userProfileBadge.style.display = 'inline-flex';
-    if (btnOpenChangePassword) btnOpenChangePassword.style.display = 'inline-flex';
-    if (btnLogout) btnLogout.style.display = 'inline-flex';
     if (navUserName) navUserName.textContent = user.name || user.username;
+    const dropdownUserName = document.getElementById('dropdownUserName');
+    if (dropdownUserName) dropdownUserName.textContent = user.name || user.username;
 
     // Rol Yönetimi ve Yetkilendirme
     const isAdmin = (user.role === 'admin');
@@ -135,8 +135,8 @@ function updateUserInterface(user) {
     }
   } else {
     if (userProfileBadge) userProfileBadge.style.display = 'none';
-    if (btnOpenChangePassword) btnOpenChangePassword.style.display = 'none';
-    if (btnLogout) btnLogout.style.display = 'none';
+    const userDropdownMenu = document.getElementById('userDropdownMenu');
+    if (userDropdownMenu) userDropdownMenu.classList.remove('show');
     if (navCompanyBar) navCompanyBar.style.display = 'none';
     if (loginOverlay) loginOverlay.classList.remove('hidden');
   }
@@ -436,8 +436,41 @@ document.addEventListener('DOMContentLoaded', () => {
     btnOpenChangePassword.addEventListener('click', openChangePasswordModal);
   }
 
-  if (userProfileBadge) {
-    userProfileBadge.addEventListener('click', openChangePasswordModal);
+  // Kullanıcı Profili Dropdown Menü Aç/Kapat & Dışarı Tıklama
+  const userDropdownMenu = document.getElementById('userDropdownMenu');
+  if (userProfileBadge && userDropdownMenu) {
+    userProfileBadge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = userDropdownMenu.classList.toggle('show');
+      userProfileBadge.classList.toggle('active', isOpen);
+      userProfileBadge.setAttribute('aria-expanded', isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!userDropdownMenu.contains(e.target) && !userProfileBadge.contains(e.target)) {
+        userDropdownMenu.classList.remove('show');
+        userProfileBadge.classList.remove('active');
+        userProfileBadge.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && userDropdownMenu.classList.contains('show')) {
+        userDropdownMenu.classList.remove('show');
+        userProfileBadge.classList.remove('active');
+        userProfileBadge.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    [btnOpenSettings, btnOpenChangePassword, btnLogout].forEach(el => {
+      if (el) {
+        el.addEventListener('click', () => {
+          userDropdownMenu.classList.remove('show');
+          userProfileBadge.classList.remove('active');
+          userProfileBadge.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
   }
 
   if (changePasswordForm) {
