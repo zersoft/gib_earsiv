@@ -476,7 +476,7 @@
                     <th>GİB Kodu</th>
                     <th id="thCompAssignedUser" style="display: none;">Sorumlu Müşavir / Kullanıcı</th>
                     <th>İletişim</th>
-                    <th style="text-align: right; width: 170px;">İşlemler</th>
+                    <th style="text-align: right; min-width: 200px;">İşlemler</th>
                   </tr>
                 </thead>
                 <tbody id="companiesTableBody">
@@ -831,7 +831,7 @@ POST /api/sms/verify
             <!-- Yalnızca Sistem Yöneticisi Görür: Müşteriyi bir muhasebeciye / kullanıcıya atama -->
             <div class="form-group" id="compAssignedUserGroup" style="display: none;">
               <label for="compAssignedUser"><i class="fa-solid fa-user-tie text-primary"></i> Atanan Mali Müşavir / Sorumlu Kullanıcı</label>
-              <select id="compAssignedUser" class="form-control" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--gray-300);">
+              <select id="compAssignedUser">
                 <option value="">-- Herhangi Bir Kullanıcıya Atanmamış (Ortak / Sistem) --</option>
               </select>
               <small class="hint-text" style="color: var(--gray-500); font-size: 0.78rem;">Bu mükellefi yalnızca atanan kullanıcı ve sistem yöneticisi görebilir.</small>

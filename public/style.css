@@ -139,12 +139,12 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-300);
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
   padding: 4px 6px 4px 12px;
   border-radius: 9999px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
   max-width: 100%;
 }
 
@@ -152,45 +152,54 @@ body {
 .company-badge-box:focus-within {
   border-color: var(--primary);
   background: var(--white);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 .company-title-lbl {
-  font-weight: 600;
-  color: var(--gray-500);
-  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.76rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .company-select-dropdown {
   border: none;
   background: transparent;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--gray-800);
-  max-width: 270px;
+  max-width: 280px;
   min-width: 160px;
   cursor: pointer;
   outline: none;
-  padding: 2px 4px;
+  padding: 3px 6px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  border-radius: 6px;
+}
+
+.company-select-dropdown:focus {
+  background: rgba(37, 99, 235, 0.05);
 }
 
 .company-select-dropdown option {
   background: var(--white);
   color: var(--gray-800);
   font-weight: 500;
+  padding: 6px;
 }
 
 .btn-company-plus {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  border: 1px solid var(--gray-200);
+  border: 1px solid var(--gray-300);
   background: var(--white);
   color: var(--primary);
   display: inline-flex;
@@ -206,7 +215,7 @@ body {
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 /* GİB BAĞLANTI DURUMU */
@@ -452,6 +461,9 @@ body {
   gap: 8px;
   border-bottom: 2px solid var(--gray-200);
   margin-bottom: 1.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
 }
 
 .tab-btn {
@@ -468,6 +480,7 @@ body {
   color: var(--gray-500);
   cursor: pointer;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .tab-btn:hover {
@@ -1459,7 +1472,7 @@ body {
 }
 
 /* ==========================================
-   MÜKELLEF LİSTESİ DURUM ROZETLERİ
+   MÜKELLEF LİSTESİ DURUM ROZETLERİ & TABLO
    ========================================== */
 
 .badge-active-comp {
@@ -1468,11 +1481,12 @@ body {
   gap: 5px;
   background: #dcfce7;
   color: #15803d;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 9999px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   border: 1px solid #bbf7d0;
+  white-space: nowrap;
 }
 
 .badge-inactive-comp {
@@ -1481,10 +1495,28 @@ body {
   gap: 5px;
   background: var(--gray-100);
   color: var(--gray-500);
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 9999px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 500;
+  border: 1px solid var(--gray-200);
+  white-space: nowrap;
+}
+
+#companiesTable th, #companiesTable td {
+  vertical-align: middle;
+}
+
+#companiesTable tbody tr:hover {
+  background-color: rgba(248, 250, 252, 0.8);
+}
+
+#companiesTable .table-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: nowrap;
 }
 
 
