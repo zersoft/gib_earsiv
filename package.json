@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "rebuild-sqlite": "npm rebuild better-sqlite3 --build-from-source"
+    "rebuild-sqlite": "npm rebuild better-sqlite3 --build-from-source && node -e \"const fs=require('fs'),path=require('path');try{const p=path.dirname(require.resolve('better-sqlite3/package.json'));const src=path.join(p,'build','Release','better_sqlite3.node');const dstDir=path.join(p,'prebuilds');const dst=path.join(dstDir,'linux-x64.node');if(fs.existsSync(src)){if(!fs.existsSync(dstDir)){fs.mkdirSync(dstDir,{recursive:true});}fs.copyFileSync(src,dst);console.log('Derlenen binary prebuilds/linux-x64.node dosyasina kopyalandi!');}}catch(e){console.log('Copy warning:',e.message);}\""
   },
   "engines": {
     "node": ">=18.0.0"
