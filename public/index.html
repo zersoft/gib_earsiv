@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GİB e-Arşiv Fatura Portalı & Entegrasyon Kokpiti</title>
   <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261015_01">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,16 +28,18 @@
 
       <!-- Aktif Mükellef / Firma Seçici (Mali Müşavir & Çoklu Firma) -->
       <div class="nav-company-bar" id="navCompanyBar" style="display: none;">
-        <div class="company-badge-box">
-          <i class="fa-solid fa-briefcase text-primary"></i>
-          <span class="company-title-lbl">Mükellef:</span>
-          <select id="activeCompanySelect" class="company-select-dropdown" title="Aktif Mükellefi Değiştir">
-            <!-- Dinamik doldurulur -->
-          </select>
-          <button class="btn-company-plus" id="btnQuickAddCompany" title="Yeni Mükellef / Firma Ekle">
-            <i class="fa-solid fa-plus"></i>
-          </button>
+        <div class="company-selector-wrapper">
+          <i class="fa-solid fa-briefcase company-icon"></i>
+          <div class="company-select-container">
+            <span class="company-label">MÜKELLEF SEÇİMİ</span>
+            <select id="activeCompanySelect" class="company-select-dropdown" title="Aktif Mükellefi Değiştir">
+              <!-- Dinamik doldurulur -->
+            </select>
+          </div>
         </div>
+        <button class="btn-company-plus" id="btnQuickAddCompany" title="Yeni Mükellef / Firma Ekle">
+          <i class="fa-solid fa-plus"></i>
+        </button>
       </div>
 
       <div class="navbar-right">
