@@ -8,7 +8,7 @@
     "dev": "node --watch server.js"
   },
   "engines": {
-    "node": ">=22.5.0"
+    "node": ">=18.0.0"
   },
   "keywords": [
     "gib",
@@ -23,6 +23,7 @@
   "author": "Ramazan Tuncer",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^13.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",

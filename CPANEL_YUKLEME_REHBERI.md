@@ -7,7 +7,7 @@ Bu rehber, **GİB e-Arşiv Fatura Portalı** projesini cPanel barındırma ortam
 ## 📋 Ön Gereksinimler
 
 - cPanel üzerinde **CloudLinux Node.js Selector** ("Setup Node.js App") veya **Phusion Passenger** desteği.
-- **Node.js 22.x** (Uygulama, yerleşik ve C++ derleyicisi gerektirmeyen `node:sqlite` kullandığı için Node.js 22.5.0+ ile çalışır).
+- **Node.js 20.x (Önerilen) veya 22.x** (Uygulama hem Node 20 hem Node 22 ile tam uyumludur).
 - `gib.zersoft.net` için etkinleştirilmiş SSL sertifikası (cPanel AutoSSL / Let's Encrypt).
 
 ---
