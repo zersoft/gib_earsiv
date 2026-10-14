@@ -65,8 +65,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex: 1 1 auto;
-  min-width: 0;
+  flex-shrink: 0;
 }
 
 .navbar-right {
@@ -132,6 +131,8 @@ body {
 .nav-company-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
   min-width: 0;
 }
 
@@ -141,10 +142,11 @@ body {
   gap: 8px;
   background: #f8fafc;
   border: 1px solid #cbd5e1;
-  padding: 4px 6px 4px 12px;
+  padding: 4px 8px 4px 12px;
   border-radius: 9999px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: all 0.2s ease;
+  flex-shrink: 0;
   max-width: 100%;
 }
 
@@ -165,6 +167,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  flex-shrink: 0;
 }
 
 .company-select-dropdown {
@@ -173,8 +176,8 @@ body {
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--gray-800);
-  max-width: 280px;
-  min-width: 160px;
+  max-width: 250px;
+  min-width: 80px;
   cursor: pointer;
   outline: none;
   padding: 3px 6px;
@@ -1068,27 +1071,49 @@ body {
   to { transform: translateX(0); opacity: 1; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+  .sub-badge {
+    display: none;
+  }
+  .company-select-dropdown {
+    max-width: 190px;
+  }
+  .user-role-text {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
   .row-2, .invoice-summary-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
   .navbar {
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 0.75rem;
-    align-items: stretch;
     padding: 0.75rem 1rem;
   }
-  .navbar-left, .navbar-right {
-    justify-content: space-between;
+  .navbar-left {
+    flex: 1 1 auto;
+  }
+  .navbar-right {
+    flex-shrink: 0;
+  }
+  .nav-company-bar {
+    order: 3;
     width: 100%;
-    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+  .company-badge-box {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .company-select-dropdown {
+    max-width: none;
+    flex: 1 1 auto;
   }
   .nav-divider {
     display: none;
-  }
-  .company-select-dropdown {
-    max-width: 200px;
   }
   .kpi-grid {
     grid-template-columns: 1fr 1fr !important;
