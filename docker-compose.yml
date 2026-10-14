@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  gib-earsiv:
+    build: .
+    container_name: gib_earsiv_portal
+    restart: unless-stopped
+    ports:
+      - "3005:3005"
+    env_file:
+      - .env
+    environment:
+      - PORT=3005
+      - NODE_ENV=production
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
