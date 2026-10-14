@@ -32,6 +32,9 @@ const upload = multer({
 const app = express();
 const PORT = process.env.PORT || 3005;
 
+// cPanel / Nginx / Cloudflare arkasında Reverse Proxy & SSL (https) desteği
+app.set('trust proxy', 1);
+
 // Arka planda periyodik senkronizasyonu başlat (30 dakikada bir)
 syncEngine.startPeriodicSync(30);
 
@@ -854,10 +857,15 @@ app.get('/api/system/version', (req, res) => {
 });
 
 // Sunucuyu Başlat
+const isSocket = (typeof PORT === 'string' && (PORT.includes('/') || PORT.includes('\\')));
+const displayUrl = process.env.APP_URL || (isSocket ? 'https://gib.zersoft.net' : `http://localhost:${PORT}`);
+
 app.listen(PORT, () => {
   console.log(`====================================================`);
   console.log(`🚀 GİB e-Arşiv Fatura Portalı Başlatıldı!`);
-  console.log(`🌐 Web Kokpiti: http://localhost:${PORT}`);
-  console.log(`📡 REST API:   http://localhost:${PORT}/api/status`);
+  console.log(`🌐 Canlı Adres / Domain: ${displayUrl}`);
+  console.log(`📡 REST API:   ${isSocket ? displayUrl + '/api/status' : `http://localhost:${PORT}/api/status`}`);
   console.log(`====================================================`);
 });
+
+module.exports = app;
