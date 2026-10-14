@@ -2,6 +2,9 @@ FROM node:22-alpine
 
 WORKDIR /app
 
+# Native modüller için derleme araçları
+RUN apk add --no-cache python3 make g++
+
 # Paket bağımlılıklarını kopyala
 COPY package*.json ./
 
